@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algerian Channels by Younes Bachouche</title>
-    <link  rel="icon" href="https://i.imgur.com/YKtxe49.png/>
-    <link  rel="shortcut" href="https://i.imgur.com/YKtxe49.png"/>
-    <link  rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png"/>
-    <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'/>
-    <link  rel="icon" href="https://i.imgur.com/YKtxe49.png"/>
-    <link  rel="shortcut" href="https://i.imgur.com/YKtxe49.png"/>
-    <link  rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png"/>
-      <meta name="description" 
-        content="Built by Algerian developer Younes Bachouche.">
+    <link rel="icon" href="https://i.imgur.com/YKtxe49.png">
+    <link rel="shortcut" href="https://i.imgur.com/YKtxe49.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png">
+    <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
+    <meta name="description" content="Built by Algerian developer Younes Bachouche.">
     <style>
         * {
             margin: 0;
@@ -22,8 +18,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text */
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,11 +28,16 @@
             padding: 20px;
         }
 
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #121212;
+        }
+
         .header {
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 30px;
-            color: #ffffff;
+            color: inherit;
             text-align: center;
         }
 
@@ -50,13 +51,19 @@
         }
 
         .card {
-            background-color: #1e1e1e; /* Dark card background */
+            background-color: #1e1e1e;
             border-radius: 12px;
             overflow: hidden;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            border: 1px solid #333333; /* Subtle border */
+            border: 1px solid #333333;
+            position: relative;
+        }
+
+        body.light-mode .card {
+            background-color: #ffffff;
+            border-color: #ddd;
         }
 
         .card:hover {
@@ -69,14 +76,23 @@
             height: 80px;
             margin-top: 20px;
             object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)); /* Logo shadow */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
 
         .card h3 {
             margin: 15px 0;
             font-size: 18px;
             font-weight: 500;
-            color: #ffffff;
+            color: inherit;
+        }
+
+        .favorite-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: gold;
         }
 
         .modal {
@@ -145,6 +161,39 @@
             color: #ffffff;
         }
 
+        #search-bar {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #333333;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        body.light-mode #search-bar {
+            background-color: #ffffff;
+            border-color: #ddd;
+            color: #121212;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #888;
+        }
+
+        footer a {
+            color: #ff3b30;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -163,50 +212,56 @@
 </head>
 <body>
     <div class="header">Algerian Channels</div>
+    <input type="text" id="search-bar" placeholder="Search channels..." oninput="filterChannels()">
     <div class="container">
-        
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie')">
+        <!-- Channel Cards -->
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie', 'Programme National (ENTV)')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/7/72/Logo_de_TV1_Alg%C3%A9rie_%282020%29.svg" alt="ENTV">
             <h3>Programme National (ENTV)</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Programme National (ENTV)')">★</span>
         </div>
-
-        
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie', 'Canal Algerie')">
             <img src="https://i.imgur.com/AZ4w2qt.png" alt="Canal Algerie">
             <h3>Canal Algerie</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Canal Algerie')">★</span>
         </div>
-
-        
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria3')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria3', 'Algerie 3')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/bc/Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg/1200px-Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg.png" alt="Algerie 3">
             <h3>Algerie 3</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Algerie 3')">★</span>
         </div>
-
-       
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria4')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria4', 'Tamazigh TV')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg/1613px-Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg.png" alt="Tamazigh TV">
             <h3>Tamazigh TV</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Tamazigh TV')">★</span>
         </div>
-<div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5')">
-            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/97/Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg/1732px-Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg.png" alt="algerie 3">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5', 'Coran TV')">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/97/Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg/1732px-Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg.png" alt="Coran TV">
             <h3>Coran TV</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Coran TV')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie6')">
-            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/72/Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg/1477px-Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg.png" alt="algerie 3">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie6', 'Essadissa TV')">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/72/Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg/1477px-Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg.png" alt="Essadissa TV">
             <h3>Essadissa TV</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Essadissa TV')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie7')">
-            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5a/TV7.svg/640px-TV7.svg.png" alt="algerie 3">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie7', 'Al Maarifa TV7')">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5a/TV7.svg/640px-TV7.svg.png" alt="Al Maarifa TV7">
             <h3>Al Maarifa TV7</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Al Maarifa TV7')">★</span>
         </div>
-        
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie8')">
-            <img src="https://i.imgur.com/IwwJuYC.png" alt="algerie 3">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie8', 'Edhakira TV8')">
+            <img src="https://i.imgur.com/IwwJuYC.png" alt="Edhakira TV8">
             <h3>Edhakira TV8</h3>
+            <span class="favorite-icon" onclick="toggleFavorite('Edhakira TV8')">★</span>
         </div>
-        
     </div>
 
+    <!-- Recently Watched Section -->
+    <div class="header">Recently Watched</div>
+    <div class="container" id="recently-watched"></div>
+
+    <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">×</button>
@@ -215,25 +270,111 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>Built with ❤️ by Younes Bachouche | <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
+    </footer>
+
     <script>
         const modal = document.getElementById('modal');
         const streamIframe = document.getElementById('stream-iframe');
         const loading = document.querySelector('.loading');
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let recentlyWatched = JSON.parse(localStorage.getItem('recentlyWatched')) || [];
 
-        function openModal(url) {
-            loading.style.display = 'flex'; 
-            streamIframe.src = url; 
-            modal.style.display = 'flex'; 
+        // Open Modal
+        function openModal(url, channelName) {
+            loading.style.display = 'flex';
+            streamIframe.src = url;
+            modal.style.display = 'flex';
+
+            // Add to recently watched
+            recentlyWatched = recentlyWatched.filter(name => name !== channelName);
+            recentlyWatched.unshift(channelName);
+            if (recentlyWatched.length > 3) recentlyWatched.pop();
+            localStorage.setItem('recentlyWatched', JSON.stringify(recentlyWatched));
+            updateRecentlyWatchedUI();
 
             streamIframe.onload = () => {
                 loading.style.display = 'none';
             };
+
+            streamIframe.onerror = () => {
+                loading.textContent = 'Failed to load stream. Please try again later.';
+            };
         }
 
+        // Close Modal
         function closeModal() {
-            modal.style.display = 'none'; // Hide the modal
-            streamIframe.src = ''; // Clear the iframe source
+            modal.style.display = 'none';
+            streamIframe.src = '';
         }
+
+        // Toggle Favorite
+        function toggleFavorite(channelName) {
+            event.stopPropagation(); // Prevent card click event
+            if (favorites.includes(channelName)) {
+                favorites = favorites.filter(name => name !== channelName);
+            } else {
+                favorites.push(channelName);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesUI();
+        }
+
+        // Update Favorites UI
+        function updateFavoritesUI() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const channelName = card.querySelector('h3').textContent;
+                const favoriteIcon = card.querySelector('.favorite-icon');
+                if (favorites.includes(channelName)) {
+                    favoriteIcon.style.color = 'gold';
+                } else {
+                    favoriteIcon.style.color = '#888';
+                }
+            });
+        }
+
+        // Update Recently Watched UI
+        function updateRecentlyWatchedUI() {
+            const recentlyWatchedContainer = document.getElementById('recently-watched');
+            recentlyWatchedContainer.innerHTML = recentlyWatched.map(name => `
+                <div class="card" onclick="openModal('...', '${name}')">
+                    <img src="..." alt="${name}">
+                    <h3>${name}</h3>
+                </div>
+            `).join('');
+        }
+
+        // Filter Channels
+        function filterChannels() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const channelName = card.querySelector('h3').textContent.toLowerCase();
+                if (channelName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle Theme
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        // Set Theme on Page Load
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-mode', savedTheme === 'light');
+            updateFavoritesUI();
+            updateRecentlyWatchedUI();
+        };
     </script>
 </body>
 </html>
