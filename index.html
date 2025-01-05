@@ -58,7 +58,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: 1px solid #333333;
-            position: relative;
         }
 
         body.light-mode .card {
@@ -84,15 +83,6 @@
             font-size: 18px;
             font-weight: 500;
             color: inherit;
-        }
-
-        .favorite-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: gold;
         }
 
         .modal {
@@ -215,51 +205,39 @@
     <input type="text" id="search-bar" placeholder="Search channels..." oninput="filterChannels()">
     <div class="container">
         <!-- Channel Cards -->
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie', 'Programme National (ENTV)')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/7/72/Logo_de_TV1_Alg%C3%A9rie_%282020%29.svg" alt="ENTV">
             <h3>Programme National (ENTV)</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Programme National (ENTV)')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie', 'Canal Algerie')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie')">
             <img src="https://i.imgur.com/AZ4w2qt.png" alt="Canal Algerie">
             <h3>Canal Algerie</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Canal Algerie')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria3', 'Algerie 3')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria3')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/bc/Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg/1200px-Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg.png" alt="Algerie 3">
             <h3>Algerie 3</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Algerie 3')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria4', 'Tamazigh TV')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria4')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg/1613px-Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg.png" alt="Tamazigh TV">
             <h3>Tamazigh TV</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Tamazigh TV')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5', 'Coran TV')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/97/Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg/1732px-Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg.png" alt="Coran TV">
             <h3>Coran TV</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Coran TV')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie6', 'Essadissa TV')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie6')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/72/Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg/1477px-Logo_de_TV6_Alg%C3%A9rie_%282020%29.svg.png" alt="Essadissa TV">
             <h3>Essadissa TV</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Essadissa TV')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie7', 'Al Maarifa TV7')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie7')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5a/TV7.svg/640px-TV7.svg.png" alt="Al Maarifa TV7">
             <h3>Al Maarifa TV7</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Al Maarifa TV7')">★</span>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie8', 'Edhakira TV8')">
+        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie8')">
             <img src="https://i.imgur.com/IwwJuYC.png" alt="Edhakira TV8">
             <h3>Edhakira TV8</h3>
-            <span class="favorite-icon" onclick="toggleFavorite('Edhakira TV8')">★</span>
         </div>
     </div>
-
-    <!-- Recently Watched Section -->
-    <div class="header">Recently Watched</div>
-    <div class="container" id="recently-watched"></div>
 
     <!-- Modal -->
     <div class="modal" id="modal">
@@ -272,28 +250,19 @@
 
     <!-- Footer -->
     <footer>
-        <p>Built with ❤️ by Younes Bachouche | <a href="https://github.com/younesbachouche" target="_blank">GitHub</a></p>
+        <p>Built with ❤️ by Younes Bachouche | <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
     </footer>
 
     <script>
         const modal = document.getElementById('modal');
         const streamIframe = document.getElementById('stream-iframe');
         const loading = document.querySelector('.loading');
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let recentlyWatched = JSON.parse(localStorage.getItem('recentlyWatched')) || [];
 
         // Open Modal
-        function openModal(url, channelName) {
+        function openModal(url) {
             loading.style.display = 'flex';
             streamIframe.src = url;
             modal.style.display = 'flex';
-
-            // Add to recently watched
-            recentlyWatched = recentlyWatched.filter(name => name !== channelName);
-            recentlyWatched.unshift(channelName);
-            if (recentlyWatched.length > 3) recentlyWatched.pop();
-            localStorage.setItem('recentlyWatched', JSON.stringify(recentlyWatched));
-            updateRecentlyWatchedUI();
 
             streamIframe.onload = () => {
                 loading.style.display = 'none';
@@ -308,43 +277,6 @@
         function closeModal() {
             modal.style.display = 'none';
             streamIframe.src = '';
-        }
-
-        // Toggle Favorite
-        function toggleFavorite(channelName) {
-            event.stopPropagation(); // Prevent card click event
-            if (favorites.includes(channelName)) {
-                favorites = favorites.filter(name => name !== channelName);
-            } else {
-                favorites.push(channelName);
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            updateFavoritesUI();
-        }
-
-        // Update Favorites UI
-        function updateFavoritesUI() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const channelName = card.querySelector('h3').textContent;
-                const favoriteIcon = card.querySelector('.favorite-icon');
-                if (favorites.includes(channelName)) {
-                    favoriteIcon.style.color = 'gold';
-                } else {
-                    favoriteIcon.style.color = '#888';
-                }
-            });
-        }
-
-        // Update Recently Watched UI
-        function updateRecentlyWatchedUI() {
-            const recentlyWatchedContainer = document.getElementById('recently-watched');
-            recentlyWatchedContainer.innerHTML = recentlyWatched.map(name => `
-                <div class="card" onclick="openModal('...', '${name}')">
-                    <img src="..." alt="${name}">
-                    <h3>${name}</h3>
-                </div>
-            `).join('');
         }
 
         // Filter Channels
@@ -372,8 +304,6 @@
         window.onload = () => {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.body.classList.toggle('light-mode', savedTheme === 'light');
-            updateFavoritesUI();
-            updateRecentlyWatchedUI();
         };
     </script>
 </body>
