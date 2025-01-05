@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algerian Channels by Younes Bachouche</title>
-    <link rel="icon" href="https://i.imgur.com/YKtxe49.png">
-    <link rel="shortcut" href="https://i.imgur.com/YKtxe49.png">
-    <link rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png">
-    <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
-    <meta name="description" content="Built by Algerian developer Younes Bachouche.">
+    <link  rel="icon" href="https://i.imgur.com/YKtxe49.png/>
+    <link  rel="shortcut" href="https://i.imgur.com/YKtxe49.png"/>
+    <link  rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png"/>
+    <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'/>
+    <link  rel="icon" href="https://i.imgur.com/YKtxe49.png"/>
+    <link  rel="shortcut" href="https://i.imgur.com/YKtxe49.png"/>
+    <link  rel="apple-touch-icon" href="https://i.imgur.com/YKtxe49.png"/>
+      <meta name="description" 
+        content="Built by Algerian developer Younes Bachouche.">
     <style>
         * {
             margin: 0;
@@ -143,7 +147,7 @@
 
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr; /* Single column layout for small screens */
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
 
             .card img {
@@ -160,23 +164,30 @@
 <body>
     <div class="header">Algerian Channels</div>
     <div class="container">
+        
         <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/7/72/Logo_de_TV1_Alg%C3%A9rie_%282020%29.svg" alt="ENTV">
             <h3>Programme National (ENTV)</h3>
         </div>
+
+        
         <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie')">
             <img src="https://i.imgur.com/AZ4w2qt.png" alt="Canal Algerie">
             <h3>Canal Algerie</h3>
         </div>
+
+        
         <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria3')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/bc/Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg/1200px-Logo_de_TV3_Alg%C3%A9rie_%282020%29.svg.png" alt="Algerie 3">
             <h3>Algerie 3</h3>
         </div>
+
+       
         <div class="card" onclick="openModal('https://www.elahmad.com/tv/mobiletv/glarb.php?id=algeria4')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg/1613px-Logo_de_TV4_Alg%C3%A9rie_version_arabe_%282020%29.svg.png" alt="Tamazigh TV">
             <h3>Tamazigh TV</h3>
         </div>
-        <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5')">
+<div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie5')">
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/97/Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg/1732px-Logo_de_TV5_Alg%C3%A9rie_%282020%29.svg.png" alt="algerie 3">
             <h3>Coran TV</h3>
         </div>
@@ -188,10 +199,12 @@
             <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5a/TV7.svg/640px-TV7.svg.png" alt="algerie 3">
             <h3>Al Maarifa TV7</h3>
         </div>
+        
         <div class="card" onclick="openModal('https://www.elahmad.com/tv/algeria_live.php?id=algerie8')">
             <img src="https://i.imgur.com/IwwJuYC.png" alt="algerie 3">
             <h3>Edhakira TV8</h3>
         </div>
+        
     </div>
 
     <div class="modal" id="modal">
