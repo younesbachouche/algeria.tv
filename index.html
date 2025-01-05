@@ -184,6 +184,22 @@
             text-decoration: underline;
         }
 
+        #language-switch {
+            margin-bottom: 20px;
+            padding: 8px;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #333333;
+            font-size: 16px;
+        }
+
+        body.light-mode #language-switch {
+            background-color: #ffffff;
+            border-color: #ddd;
+            color: #121212;
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -201,7 +217,14 @@
     </style>
 </head>
 <body>
-    <div class="header">Algerian Channels</div>
+    <!-- Language Switch -->
+    <select id="language-switch" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+    </select>
+
+    <div class="header" id="header">Algerian Channels</div>
     <input type="text" id="search-bar" placeholder="Search channels..." oninput="filterChannels()">
     <div class="container">
         <!-- Channel Cards -->
@@ -258,6 +281,20 @@
         const streamIframe = document.getElementById('stream-iframe');
         const loading = document.querySelector('.loading');
 
+        // Language Translations
+        const translations = {
+            en: { header: "Algerian Channels", searchPlaceholder: "Search channels..." },
+            fr: { header: "Chaînes Algériennes", searchPlaceholder: "Rechercher des chaînes..." },
+            ar: { header: "القنوات الجزائرية", searchPlaceholder: "ابحث عن القنوات..." }
+        };
+
+        // Change Language
+        function changeLanguage() {
+            const lang = document.getElementById('language-switch').value;
+            document.getElementById('header').textContent = translations[lang].header;
+            document.getElementById('search-bar').placeholder = translations[lang].searchPlaceholder;
+        }
+
         // Open Modal
         function openModal(url) {
             loading.style.display = 'flex';
@@ -293,18 +330,18 @@
             });
         }
 
-        // Toggle Theme
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('light-mode');
-            localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
-        }
-
-        // Set Theme on Page Load
+        // Set Language on Page Load
         window.onload = () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.body.classList.toggle('light-mode', savedTheme === 'light');
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.getElementById('language-switch').value = savedLang;
+            changeLanguage();
         };
+
+        // Save Language Preference
+        document.getElementById('language-switch').addEventListener('change', () => {
+            const lang = document.getElementById('language-switch').value;
+            localStorage.setItem('language', lang);
+        });
     </script>
 </body>
 </html>
